@@ -28,8 +28,12 @@ struct WebView {
 import UIKit
 extension WebView: UIViewRepresentable {
     func makeUIView(context: Context) -> WKWebView {
-        let webview = WKWebView()
-        
+        let configuration = WKWebViewConfiguration()
+        configuration.allowsInlineMediaPlayback = true
+        configuration.mediaTypesRequiringUserActionForPlayback = []
+
+        let webview = WKWebView(frame: .zero, configuration: configuration)
+
         webview.scrollView.bounces = false
         webview.navigationDelegate = context.coordinator
         webview.scrollView.isScrollEnabled = false
